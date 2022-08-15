@@ -4,7 +4,10 @@ on: push
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       #----------------------------------------------
       #       check-out repo and set-up python
@@ -25,7 +28,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ "ubuntu-latest" ]
+        os: [ "ubuntu-latest" , "macos-latest", "windows-latest"]
         python-version: [ "3.8", "3.9" ]
     runs-on: ${{ matrix.os }}
     steps:
